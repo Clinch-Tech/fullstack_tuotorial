@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from "./Card";
 
 function App() {
+  // operations
+  let students = [
+    { name: "Ramesh", age: 20, gender: "male" },
+    { name: "Sujan", age: 20, gender: "male" },
+    { name: "Bivuti", age: 20, gender: "male" },
+    { name: "Asha", age: 20, gender: "female" },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Violent content here as i am years old.</div>
+      <h1>Students</h1>
+      <div style={{ display: "flex", gap: "16px" }}>
+        {students.map((element, index) => {
+          return <Card item={element} from={"home page card"} />;
+        })}
+      </div>
     </div>
   );
 }
