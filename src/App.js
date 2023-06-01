@@ -10,7 +10,7 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <div className="Application">
       <div>Violent content here as i am years old.</div>
       <h1>Students</h1>
       <div style={{ display: "flex", gap: "16px" }}>
