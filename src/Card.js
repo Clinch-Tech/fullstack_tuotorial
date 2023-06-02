@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({ element, from }) {
+export default function IndividualCard({ element, from }) {
   // props system
   // const = props;
   return (
@@ -27,4 +27,8 @@ function Card({ element, from }) {
   );
 }
 
-export default Card;
+// export default Card;
+export function xyz() {}
+export function xyz2() {}
+export function xyz3() {}
+export function xyz4() {}

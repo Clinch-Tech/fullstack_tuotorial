@@ -1,4 +1,10 @@
-import Card from "./Card";
+import Card, { xyz2 as Alias } from "./Card";
+import { Form } from "./Form";
+// ES Module
+
+// relative Path
+//   ./
+//   ../
 
 function App() {
   // operations
@@ -18,6 +24,8 @@ function App() {
           return <Card item={element} from={"home page card"} />;
         })}
       </div>
+
+      <Form />
     </div>
   );
 }
