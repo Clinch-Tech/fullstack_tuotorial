@@ -1,5 +1,8 @@
+import Naya from "./Naya";
 import Card, { xyz2 as Alias } from "./Card";
 import { Form } from "./Form";
+import FirstCompenent from "./components/FirstComponent";
+import { useState } from "react";
 // ES Module
 
 // relative Path
@@ -15,17 +18,51 @@ function App() {
     { name: "Asha", age: 20, gender: "female" },
   ];
 
+  let count = 1;
+
+  const [counter, setCounter] = useState(1);
+
+  // data fetchcing
+  // useCounter(result)
+
+  console.log("re-render");
+
   return (
     <div className="Application">
-      <div>Violent content here as i am years old.</div>
-      <h1>Students</h1>
+      {count}
+      <button
+        onClick={() => {
+          count = count + 1;
+          console.log(count);
+        }}
+      >
+        Increment
+      </button>
+
+      <div>
+        {counter}
+        <button onClick={() => setCounter(counter + 1)}>Increment</button>
+      </div>
+
+      {/* <div style={{ display: "flex", gap: "16px" }}>
+        {students.map((element, index) => {
+          return <Card key={index} item={element} from={"home page card"} />;
+        })}
+      </div> */}
+
+      {/* <div>Violent content here as i am years old.</div>
+      // <h1>Students</h1>
       <div style={{ display: "flex", gap: "16px" }}>
         {students.map((element, index) => {
           return <Card item={element} from={"home page card"} />;
         })}
       </div>
 
-      <Form />
+      <FirstCompenent />
+
+      <Form /> */}
+
+      {/* <Naya /> */}
     </div>
   );
 }
