@@ -3,6 +3,7 @@ import Card, { xyz2 as Alias } from "./Card";
 import { Form } from "./Form";
 import FirstCompenent from "./components/FirstComponent";
 import { useState } from "react";
+import Lifecycle from "./components/FirstComponent";
 // ES Module
 
 // relative Path
@@ -29,7 +30,9 @@ function App() {
 
   return (
     <div className="Application">
-      {count}
+      <Lifecycle />
+
+      {/* {count}
       <button
         onClick={() => {
           count = count + 1;
@@ -42,7 +45,7 @@ function App() {
       <div>
         {counter}
         <button onClick={() => setCounter(counter + 1)}>Increment</button>
-      </div>
+      </div> */}
 
       {/* <div style={{ display: "flex", gap: "16px" }}>
         {students.map((element, index) => {
