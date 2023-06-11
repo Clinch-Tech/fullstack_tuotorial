@@ -137,5 +137,3 @@ function SecondComponent() {
     </div>
   );
 }
-
-useEffect(() => {});

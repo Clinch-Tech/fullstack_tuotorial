@@ -4,6 +4,8 @@ import { Form } from "./Form";
 import FirstCompenent from "./components/FirstComponent";
 import { useState } from "react";
 import Lifecycle from "./components/FirstComponent";
+import Counters from "./components/Counters";
+import Cart from "./components/Cart";
 // ES Module
 
 // relative Path
@@ -30,7 +32,11 @@ function App() {
 
   return (
     <div className="Application">
-      <Lifecycle />
+      {/* <Lifecycle /> */}
+
+      <Cart />
+
+      <Counters />
 
       {/* {count}
       <button
