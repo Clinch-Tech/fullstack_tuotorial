@@ -6,6 +6,8 @@ import { useState } from "react";
 import Lifecycle from "./components/FirstComponent";
 import Counters from "./components/Counters";
 import Cart from "./components/Cart";
+import Movies from "./components/Movies";
+import Home from "./components/Home";
 // ES Module
 
 // relative Path
@@ -34,9 +36,14 @@ function App() {
     <div className="Application">
       {/* <Lifecycle /> */}
 
-      <Cart />
+      <Home />
 
-      <Counters />
+      <hr />
+      {/* <Movies /> */}
+
+      {/* <Cart />
+
+      <Counters /> */}
 
       {/* {count}
       <button
