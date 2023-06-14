@@ -18,6 +18,7 @@ const movies = [
   {
     _id: "3",
     title: "Red Dead",
+    description: "Good movie",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 15,
   },

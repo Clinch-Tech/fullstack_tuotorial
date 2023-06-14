@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { getMovies } from "../service/movieDB";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import MovieDetailModal from "./MovieDetailModal";
 
 export default function Home() {
   const [movies, setMovies] = useState(getMovies());
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedMovies, setSelectedMOvies] = useState(movies);
-
   const [viewableMovies, setViewableMovies] = useState(selectedMovies);
+
+  const [selectedMovieForModal, setSelectedMovieForModal] = useState({});
+
+  let [isOpen, setIsOpen] = useState(false);
+  const closeModal = () => setIsOpen(false);
 
   const pageItems = 5;
 
@@ -57,10 +62,28 @@ export default function Home() {
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
                 <td className="flex items-center gap-3">
-                  <button className="bg-blue-500 rounded-md text-white px-4 py-2 font-medium">
+                  <button
+                    className="bg-blue-500 rounded-md text-white px-4 py-2 font-medium"
+                    onClick={() => {
+                      // data send
+                      setSelectedMovieForModal(movie);
+                      setIsOpen(true);
+                    }}
+                  >
                     View
                   </button>
-                  {<TrashIcon className="text-red-500 h-5" />}
+                  {
+                    <TrashIcon
+                      className="text-red-500 h-5"
+                      onClick={() => {
+                        console.log("selected", selectedMovies);
+                        setSelectedMOvies(
+                          deleteMovie(movie._id, selectedMovies)
+                        );
+                        console.log("from delete", deleteMovie(movie._id));
+                      }}
+                    />
+                  }
                 </td>
               </tr>
             );
@@ -84,6 +107,12 @@ export default function Home() {
           </div>,
         ])}
       </div>
+
+      <MovieDetailModal
+        isOpen={isOpen}
+        closeModal={closeModal}
+        data={selectedMovieForModal}
+      />
     </div>
   );
 }

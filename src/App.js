@@ -6,8 +6,9 @@ import { useState } from "react";
 import Lifecycle from "./components/FirstComponent";
 import Counters from "./components/Counters";
 import Cart from "./components/Cart";
-import Movies from "./components/Movies";
+// import Movies from "./components/Movies";
 import Home from "./components/Home";
+import MovieDetailModal from "./components/MovieDetailModal";
 // ES Module
 
 // relative Path
@@ -37,6 +38,8 @@ function App() {
       {/* <Lifecycle /> */}
 
       <Home />
+
+      {/* <MovieDetailModal /> */}
 
       <hr />
       {/* <Movies /> */}
