@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 // import Movies from "./components/Movies";
 import Home from "./components/Home";
 import MovieDetailModal from "./components/MovieDetailModal";
+import Practice from "./components/Practice";
 // ES Module
 
 // relative Path
@@ -35,13 +36,13 @@ function App() {
 
   return (
     <div className="Application">
+      <Practice />
       {/* <Lifecycle /> */}
 
-      <Home />
+      {/* <Home /> */}
 
       {/* <MovieDetailModal /> */}
 
-      <hr />
       {/* <Movies /> */}
 
       {/* <Cart />
