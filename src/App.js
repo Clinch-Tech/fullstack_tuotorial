@@ -1,89 +1,31 @@
-import Naya from "./Naya";
-import Card, { xyz2 as Alias } from "./Card";
-import { Form } from "./Form";
-import FirstCompenent from "./components/FirstComponent";
-import { useState } from "react";
-import Lifecycle from "./components/FirstComponent";
-import Counters from "./components/Counters";
-import Cart from "./components/Cart";
-// import Movies from "./components/Movies";
-import Home from "./components/Home";
-import MovieDetailModal from "./components/MovieDetailModal";
-import Practice from "./components/Practice";
-// ES Module
-
-// relative Path
-//   ./
-//   ../
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import BaseLayout from "./layout/BaseLayout";
+import Product from "./pages/Product";
 
 function App() {
-  // operations
-  let students = [
-    { name: "Ramesh", age: 20, gender: "male" },
-    { name: "Sujan", age: 20, gender: "male" },
-    { name: "Bivuti", age: 20, gender: "male" },
-    { name: "Asha", age: 20, gender: "female" },
-  ];
-
-  let count = 1;
-
-  const [counter, setCounter] = useState(1);
-
-  // data fetchcing
-  // useCounter(result)
-
-  console.log("re-render");
-
   return (
-    <div className="Application">
-      <Practice />
-      {/* <Lifecycle /> */}
-
-      {/* <Home /> */}
-
-      {/* <MovieDetailModal /> */}
-
-      {/* <Movies /> */}
-
-      {/* <Cart />
-
-      <Counters /> */}
-
-      {/* {count}
-      <button
-        onClick={() => {
-          count = count + 1;
-          console.log(count);
-        }}
-      >
-        Increment
-      </button>
-
-      <div>
-        {counter}
-        <button onClick={() => setCounter(counter + 1)}>Increment</button>
-      </div> */}
-
-      {/* <div style={{ display: "flex", gap: "16px" }}>
-        {students.map((element, index) => {
-          return <Card key={index} item={element} from={"home page card"} />;
-        })}
-      </div> */}
-
-      {/* <div>Violent content here as i am years old.</div>
-      // <h1>Students</h1>
-      <div style={{ display: "flex", gap: "16px" }}>
-        {students.map((element, index) => {
-          return <Card item={element} from={"home page card"} />;
-        })}
-      </div>
-
-      <FirstCompenent />
-
-      <Form /> */}
-
-      {/* <Naya /> */}
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BaseLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="product/:productId" element={<Product />} />
+            {/* 
+            <Route path="/products" element={<Pages />}>
+              <Route path="/setting"></Route>
+              <Route path="/privacy-policy"></Route>
+            </Route>  */}
+          </Route>
+          <Route path="not-need" element={<div>not needed</div>} />
+          <Route path="*" element={<div>Not found</div>} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
