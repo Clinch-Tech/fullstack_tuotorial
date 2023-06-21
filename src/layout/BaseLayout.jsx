@@ -6,6 +6,7 @@ const BaseLayout = () => {
   return (
     <div>
       <NavBar />
+      {/* <Sidebar> */}
       <Outlet />
       {/* <Footer /> */}
     </div>

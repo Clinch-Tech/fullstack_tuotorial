@@ -5,7 +5,14 @@ function Product() {
   const params = useParams();
   console.log(params);
 
-  return <div>Product</div>;
+  return (
+    <div>
+      Product
+      <div>{params.productId}</div>
+      {count}
+      <div>Increment</div>
+    </div>
+  );
 }
 
 export default Product;
