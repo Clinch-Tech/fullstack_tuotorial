@@ -9,7 +9,6 @@ function Product() {
     <div>
       Product
       <div>{params.productId}</div>
-      {count}
       <div>Increment</div>
     </div>
   );
