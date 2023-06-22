@@ -1,13 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import NavBar from "./Navbar/NavBar";
 
-const BaseLayout = () => {
+const BaseLayout = ({ children }) => {
   return (
     <div>
       <NavBar />
       {/* <Sidebar> */}
-      <Outlet />
+      {children}
+      {/* <Outlet /> */}
       {/* <Footer /> */}
     </div>
   );
