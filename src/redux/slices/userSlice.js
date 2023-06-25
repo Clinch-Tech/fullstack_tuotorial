@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { isLoggedIn } from "../../utils/auth.utils";
+import {
+  clearToken,
+  getToken,
+  isLoggedIn,
+  setToken,
+} from "../../utils/auth.utils";
 
 const initialState = {
   loginStatus: isLoggedIn(),
-  user: localStorage.getItem("user"),
+  token: getToken(),
 };
 
 export const userSlice = createSlice({
@@ -17,16 +22,19 @@ export const userSlice = createSlice({
       // immutable state based off those changes
       state.value += 1;
     },
-    decrement: (state) => {
-      state.value -= 1;
+    login: (state, action) => {
+      console.log("action", action);
+      setToken(action.payload);
+      state.loginStatus = true;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    logout: (state) => {
+      clearToken();
+      state.loginStatus = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = userSlice.actions;
+export const { increment, login, logout } = userSlice.actions;
 
 export default userSlice.reducer;

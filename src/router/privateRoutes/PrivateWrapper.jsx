@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const PrivateWrapper = ({ children }) => {
-  const isLoginStaus = true;
+  const isLoginStaus = useSelector((state) => state.user.loginStatus);
 
-  console.log("are you loggedin ? ", isLoginStaus);
+  // const isLoginStaus = true;
+
   if (!isLoginStaus) {
     return <Navigate to="/login" />;
   }

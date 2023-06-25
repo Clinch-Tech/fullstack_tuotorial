@@ -7,7 +7,7 @@ export const appRoutes = [
     id: "home",
     path: "/",
     element: Home,
-    hasLayout: false,
+    hasLayout: true,
     isPrivate: true,
   },
   {

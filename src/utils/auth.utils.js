@@ -1,25 +1,29 @@
-export const isLoggedIn = () => {
-  let loggedInData = localStorage.getItem("token");
+const TOKEN = "token";
 
-  if (loggedInData) {
+export const isLoggedIn = () => {
+  let token = localStorage.getItem("token");
+
+  token = token ?? sessionStorage.getItem("token");
+
+  if (token) {
     return true;
   }
-  loggedInData = sessionStorage.getItem("isLooged");
-  if (loggedInData) {
-    return true;
-  }
+
   return false;
 };
 
-JSON.parse(user);
-
-const logIn = (user, isr) => {
-  localStorage.setItem("isLogged", true);
-
-  stringifyUser = JSON.stringify(user);
+export const setToken = (token) => {
+  localStorage.setItem("token", token);
 };
 
-const loggedOut = () => {
+export const getToken = () => {
+  let token = localStorage.getItem("token");
+  token = token ?? sessionStorage.getItem("token");
+
+  return token;
+};
+
+export const clearToken = () => {
   localStorage.clear();
   sessionStorage.clear();
 };
