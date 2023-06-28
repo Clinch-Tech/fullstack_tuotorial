@@ -4,6 +4,7 @@ import isEmail from "validator/lib/isEmail";
 import { login } from "../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import http from "../utils/http.utils";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Login = () => {
     setIsValidEmail(isEmail(e.target.value));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isValidEmail) {
@@ -28,11 +29,16 @@ const Login = () => {
 
     // api call to backend/firebase
     // backend gives token
+    try {
+      const responseLogin = await http.post(`/auth/login`, { email, password });
 
-    let token = "hhhjhajsdf.adsfuipi2323";
+      let token = "hhhjhajsdf.adsfuipi2323";
 
-    dispatch(login(token));
-    navigate("/");
+      dispatch(login(token));
+      navigate("/");
+    } catch (e) {
+      alert("error message here.");
+    }
   };
 
   return (
@@ -62,6 +68,8 @@ const Login = () => {
             type="password"
             placeholder="Enter your password"
             className="border-2 rounded-md p-3 w-[360px] outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button

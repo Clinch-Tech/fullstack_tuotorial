@@ -16,7 +16,11 @@ const Home = () => {
 
   async function getData() {
     try {
-      const responseUser = await http.get(`/users/1`);
+      // const responseUser = await http.get(`/users/1`);
+
+      const r = await http.get("/me");
+      console.log(r);
+
       setUser(responseUser.data);
     } catch (e) {
       console.log("error", e);
