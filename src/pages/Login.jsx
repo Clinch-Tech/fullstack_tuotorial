@@ -5,6 +5,7 @@ import { login } from "../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import http from "../utils/http.utils";
+import loginApi from "../services/user.login.service";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,11 +31,13 @@ const Login = () => {
     // api call to backend/firebase
     // backend gives token
     try {
-      const responseLogin = await http.post(`/auth/login`, { email, password });
+      // const responseLogin = await http.post(`/auth/login`, { email, password });
+      // console.log(responseLogin?.data?.data?.token);
+      // let token = "hhhjhajsdf.adsfuipi2323";
 
-      let token = "hhhjhajsdf.adsfuipi2323";
+      const resposne = loginApi({ email, password });
 
-      dispatch(login(token));
+      dispatch(login(resposne?.data?.token));
       navigate("/");
     } catch (e) {
       alert("error message here.");
