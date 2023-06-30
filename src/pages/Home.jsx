@@ -21,7 +21,7 @@ const Home = () => {
       const r = await http.get("/me");
       console.log(r);
 
-      setUser(responseUser.data);
+      // setUser(responseUser.data);
     } catch (e) {
       console.log("error", e);
     }
