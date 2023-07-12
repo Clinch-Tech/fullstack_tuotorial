@@ -1,13 +1,15 @@
 import jwt from "jsonwebtoken";
 import User from "../model/user.model.js";
 
-function authentication(){
-  return [ tokenMiddleware, userExistMiddleware ]
+function authentication() {
+  return [tokenMiddleware, userExistMiddleware];
 }
 
+export function authenticationAdmin() {
+  return [tokenMiddleware, userExistMiddleware, adminMiddleware];
+}
 
 const tokenMiddleware = (req, res, next) => {
- 
   try {
     const authHeader = req.headers.authorization;
 
@@ -21,11 +23,10 @@ const tokenMiddleware = (req, res, next) => {
     }
 
     const { userId } = jwt.verify(token, "secret123");
-  }catch(e){
-    res.status(400).send(e?.message)
-    }
-  
-}
+  } catch (e) {
+    res.status(400).send(e?.message);
+  }
+};
 
 export const authMiddleware = async (req, res, next) => {
   try {
@@ -56,5 +57,3 @@ export const authMiddleware = async (req, res, next) => {
     res.send(e.message);
   }
 };
- 
-export const rishiMiddleware = 
