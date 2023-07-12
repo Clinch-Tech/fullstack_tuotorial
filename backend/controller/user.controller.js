@@ -16,7 +16,7 @@ export const searchUser = async (req, res) => {
 };
 
 export const getUserById = async (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.user_id;
 
   const responseUser = await User.findById(userId);
 

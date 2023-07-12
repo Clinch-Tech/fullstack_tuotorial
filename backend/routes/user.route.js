@@ -6,14 +6,16 @@ import {
   getUserById,
   searchUser,
 } from "../controller/user.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const userRouter = Router({ mergeParam: true });
 
-userRouter.get("/", getAllUsers);
+// api/user/?page=11.&limit=2000
+userRouter.get("/", authMiddleware, getAllUsers);
 
 userRouter.get("/search", searchUser); // localhost:8080/api/user/search
 
-userRouter.get("/:userId", getUserById);
+userRouter.get("/me", authMiddleware, getUserById);
 
 userRouter.patch("/:userId", editUserById);
 

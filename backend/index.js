@@ -10,6 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
+// app.use((req, res, next) => {
+//   console.log("from application level middleware");
+//   console.log(req.method);
+//   console.log(req.originalUrl);
+//   const startTime = Date.now();
+//   return next();
+// });
+
 app.use("/api", mainRouter);
 
 app.listen(8080, () => {
