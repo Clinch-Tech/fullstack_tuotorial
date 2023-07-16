@@ -40,7 +40,8 @@ export const deleteUser = async (req, res) => {
     await User.findByIdAndDelete(req.params.userId);
     return successHandler(res, {}, 200, "User successfully deleted");
   } catch (e) {
-    return failureHandler(res, 400, e.message || `User unable to delete`);
+    // return failureHandler(res, 400, e.message || `User unable to delete`);
+    next(e);
   }
   // succedd -> 200 --> ok , deleted
   // failed -> 400 ===> not deleted

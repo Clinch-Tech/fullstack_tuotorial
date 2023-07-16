@@ -2,6 +2,7 @@ import express from "express";
 import { connectToMongoDB } from "./config/db.js";
 import mainRouter from "./route.js";
 import morgan from "morgan";
+import multer from "multer";
 
 connectToMongoDB();
 
@@ -19,6 +20,10 @@ app.use(morgan("dev"));
 // });
 
 app.use("/api", mainRouter);
+
+// app.use((err, req, res, next) => {
+//   res.send(err);
+// });
 
 app.listen(8080, () => {
   console.log("api is running");

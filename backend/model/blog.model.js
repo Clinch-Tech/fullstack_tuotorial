@@ -17,8 +17,13 @@ const userSchema = new Schema(
 
     author: {
       type: Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: "User",
+    },
+
+    coverImage: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
