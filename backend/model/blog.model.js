@@ -25,6 +25,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    galleryImage: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );

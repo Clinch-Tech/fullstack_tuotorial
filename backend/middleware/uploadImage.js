@@ -3,6 +3,7 @@ import cloudinary from "cloudinary";
 import streamifier from "streamifier";
 import { failureHandler } from "../response.handler.js  ";
 
+// api keys must be inside of .env which should be git ignored
 cloudinary.config({
   cloud_name: "minoprojec",
   api_key: "588678837162278",
@@ -66,6 +67,14 @@ const uploadImage = (folder = "all") => {
         );
         req.body.profile_image = result_profile.secure_url;
         console.log("result of profile image", result_profile);
+      }
+
+      if (req.files.gallery) {
+        const gallery_images = [];
+        req.files.gallery.map(async (gallery_image) => {
+          const g_result = await uploadFromBuffer(gallery_image);
+          gallery_images.push(g_result.secure_url);
+        });
       }
 
       next();
