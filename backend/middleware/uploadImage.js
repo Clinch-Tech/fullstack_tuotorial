@@ -53,29 +53,32 @@ const uploadImage = (folder = "all") => {
     };
 
     try {
-      console.log(req.files.image[0]);
-
       if (req.files.image[0]) {
         let result = await uploadFromBuffer(req.files.image[0]);
         req.body.image = result.secure_url;
-        console.log("result of image", result);
       }
 
-      if (req.files.profile_image[0]) {
+      if (req.files && req.files.profile_image && req.files.profile_image[0]) {
         const result_profile = await uploadFromBuffer(
           req.files.profile_image[0]
         );
         req.body.profile_image = result_profile.secure_url;
-        console.log("result of profile image", result_profile);
       }
 
       if (req.files.gallery) {
-        const gallery_images = [];
-        req.files.gallery.map(async (gallery_image) => {
-          const g_result = await uploadFromBuffer(gallery_image);
+        let gallery_images = [];
+        for (let i = 0; i < req.files.gallery.length; i++) {
+          console.log("from inside of req.file.gallery for");
+
+          const g_result = await uploadFromBuffer(req.files.gallery[i]);
+          console.log("g_--------", g_result.secure_url);
           gallery_images.push(g_result.secure_url);
-        });
+        }
+
+        console.log("gallery_images, gallery_images", gallery_images);
+        req.body.gallery = gallery_images;
       }
+      console.log("from next block");
 
       next();
     } catch (e) {

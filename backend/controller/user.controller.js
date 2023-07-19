@@ -46,3 +46,8 @@ export const deleteUser = async (req, res) => {
   // succedd -> 200 --> ok , deleted
   // failed -> 400 ===> not deleted
 };
+
+export const productPostController = (req, res) => {
+  console.log("Now from controller");
+  return res.send("ok");
+};
