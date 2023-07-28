@@ -17,23 +17,25 @@ const userSchema = new Schema(
 
     author: {
       type: Schema.Types.ObjectId,
-      required: false,
+      required: true,
       ref: "User",
     },
 
     coverImage: {
       type: String,
-      required: true,
+      required: false,
     },
     galleryImage: [
       {
         type: String,
-        required: true,
+        required: false,
       },
     ],
+
+    tags: { type: [String], required: true },
   },
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-export default User;
+const Blog = mongoose.model("Blog", userSchema);
+export default Blog;
