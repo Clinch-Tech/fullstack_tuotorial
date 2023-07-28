@@ -11,6 +11,9 @@ export const registerController = async (req, res) => {
     const user = new User({ username, email, password });
     const userData = await user.save();
 
+    // hashing ---- text-- hashing--- hashed_value  ---- X-- text
+    // encryption -- text-- encryption key-1 --- encrypted_value  ---- decryption(public key-2/ key-1)-- text
+
     console.log(userData);
 
     const token = jwt.sign({ email, userId: userData._id }, "secret123");
@@ -35,7 +38,7 @@ export const loginController = async (req, res) => {
       throw new Error(`No user found`);
     }
 
-    if (responseUser.password !== password) {
+    if (responseUser.password !== responseUser.hashPassword(password)) {
       throw new Error("Password didn't matched");
     }
 
