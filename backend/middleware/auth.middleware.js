@@ -32,6 +32,19 @@ export const authMiddleware = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
+    // req={
+    //   params: 'val',
+    //   query: 'val',
+    //   orgianlUrl: '/adsa/d',
+    //  ..
+    //   headers: {
+    //     authorization: "Bearer addasdfll",
+    //       "Content-type": "",
+    // "CORs-policy":""
+    //   },
+    // user_id: 12
+    // }
+
     if (!authHeader) {
       throw new Error("Authorization needed.");
     }
@@ -40,7 +53,7 @@ export const authMiddleware = async (req, res, next) => {
     if (!token) {
       throw new Error("Authorization needed");
     }
-
+    // {email: "example@mail.com", userId =2}
     const { userId } = jwt.verify(token, "secret123");
 
     const existingUser = await User.findById(userId);

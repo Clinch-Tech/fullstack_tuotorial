@@ -15,10 +15,12 @@ const uploadImage = (folder = "all") => {
   const multerParse = () => {
     const storage = multer.memoryStorage();
 
+    const supported = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
+
     const upload = multer({
       storage: storage,
       fileFilter: (req, file, cb) => {
-        if (file.mimetype !== "image/png") {
+        if (!supported.includes(file.mimetype)) {
           return cb("Not supporteds", false);
         }
         return cb(null, true);
@@ -53,7 +55,7 @@ const uploadImage = (folder = "all") => {
     };
 
     try {
-      if (req.files.image[0]) {
+      if (req.files.image && req.files.image[0]) {
         let result = await uploadFromBuffer(req.files.image[0]);
         req.body.image = result.secure_url;
       }
@@ -67,22 +69,31 @@ const uploadImage = (folder = "all") => {
 
       if (req.files.gallery) {
         let gallery_images = [];
+        let gallery_images_promise = [];
+
+        const start = performance.now();
+
         for (let i = 0; i < req.files.gallery.length; i++) {
           console.log("from inside of req.file.gallery for");
 
-          const g_result = await uploadFromBuffer(req.files.gallery[i]);
-          console.log("g_--------", g_result.secure_url);
-          gallery_images.push(g_result.secure_url);
+          gallery_images_promise.push(uploadFromBuffer(req.files.gallery[i]));
         }
+        const images = await Promise.all(gallery_images_promise);
+        console.log("after uploading", images);
 
-        console.log("gallery_images, gallery_images", gallery_images);
+        gallery_images = images.map((e) => e.secure_url);
+
+        // console.log("gallery_images, gallery_images", gallery_images);
+        console.log("time elapsed is: ", performance.now() - start);
+
         req.body.gallery = gallery_images;
       }
       console.log("from next block");
 
       next();
     } catch (e) {
-      res.send(e);
+      console.log(e);
+      res.status(400).send(e);
     }
   };
 
