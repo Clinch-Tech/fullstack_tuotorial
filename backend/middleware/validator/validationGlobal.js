@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+import { allowedCategories } from "../../utils/constant.js";
 
 export default function validationGlobal(body = []) {
   let checker = [];
@@ -30,6 +31,18 @@ export default function validationGlobal(body = []) {
             .isLength({ min: 4 })
             .withMessage("")
             .isEmail()
+        );
+        break;
+
+      case "categoryName":
+        checker.push(
+          check(
+            "categoryName",
+            `Category must be one of ${allowedCategories} .`
+          )
+            .notEmpty()
+            .isLength({ min: 2 })
+            .isIn(allowedCategories)
         );
         break;
     }
