@@ -4,6 +4,7 @@ import { connectToMongoDB } from "./config/db.js";
 import mainRouter from "./route.js";
 import morgan from "morgan";
 import multer from "multer";
+import BlogCategoryRel from "./model/blogCategoryRel.junction.model.js";
 
 connectToMongoDB();
 
@@ -14,6 +15,12 @@ app.use(morgan("dev"));
 
 app.use("/api", mainRouter);
 
-app.listen(8080, () => {
+app.listen(8080, async () => {
   console.log("api is running");
+
+  console.log(
+    await BlogCategoryRel.find({})
+      .populate({ path: "blog" })
+      .populate("category")
+  );
 });

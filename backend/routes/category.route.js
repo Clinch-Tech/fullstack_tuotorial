@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createACategory } from "../controller/category.controller.js";
+import {
+  createACategory,
+  insertIntoCategoryRel,
+} from "../controller/category.controller.js";
 import validationGlobal from "../middleware/validator/validationGlobal.js";
 import { validator } from "../middleware/validator/validator.middleware.js";
 
@@ -11,5 +14,7 @@ categoryRouter.post(
   validator,
   createACategory
 );
+
+categoryRouter.post("/rel", insertIntoCategoryRel);
 
 export default categoryRouter;
